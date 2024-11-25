@@ -34,12 +34,12 @@ jobs:
     - name: Create release artifact
       run: |
         mkdir -p release
-        cp target/release/rename_directories release/
+        cp target/release/renamers release/
     - name: Upload release artifact
       uses: actions/upload-artifact@v2
       with:
-        name: rename_directories
-        path: release/rename_directories
+        name: renamers
+        path: release/renamers
 
   release:
     runs-on: ubuntu-latest
@@ -48,12 +48,12 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v2
       with:
-        name: rename_directories
+        name: renamers
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
-        files: release/rename_directories
+        files: release/renamers
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
